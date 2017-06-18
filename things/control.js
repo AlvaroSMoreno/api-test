@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
 
 //Ver un solo usuario
 router.get('/:id', function(req, res) {
-  user.findById(req.params.id, function(err, user) {
+  user.find({'id' : req.params.id}, function(err, user) {
     if(err) return res.status(500).send('There was a problem finding the user!')
     res.status(200).send(user)
   })
@@ -37,9 +37,9 @@ router.get('/:id', function(req, res) {
 
 //Borrar un usuario
 router.delete('/:id', function(req, res) {
-  user.findByIdAndRemove(req.params.id, function(err, user) {
+  user.remove({'id' : req.params.id}, function(err, user) {
     if(err) return res.status(500).send('There was a problem finding the user!')
-    res.status(200).send('The user: ' + user.name + ' was deleted!')
+    res.status(200).send('The user was deleted!')
   })
 })
 
